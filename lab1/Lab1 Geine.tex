@@ -1,0 +1,67 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{cmap}
+\usepackage{mathtext}
+\usepackage{amsmath,amssymb}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english, russian]{babel}
+\usepackage{bmstu-lab}
+
+
+\begin{document}
+\graphicspath{{images/}{images2/}} % папки с картинками
+
+\worknumber{1}
+\variant{4}
+\workname{Математика в \LaTeX}
+\discipline{Автоматизация процессов разработки научно-технической документации}
+\group{ИУ6-64Б}
+\author{М.А.Гейне}
+\tutor[Преподаватель]{Т.А.Ким}
+\bmstutitlelab
+
+\hypersetup{
+    linkcolor=black
+}
+
+\section{Матрицы}
+\[ \begin{bmatrix}
+    \infty & 13 \\
+    12 & \frac{1}{\infty} \\
+    13 & \infty
+\end{bmatrix} \]
+
+\section{Интеграл}
+\[ \int^{\delta_{\alpha0}}_{-\delta_{\alpha0}}f_{\alpha}(\delta_\alpha)d\delta_\alpha \geqslant P_\alpha,\]
+где $P_D$, $P_\alpha$, $P_\gamma$, $P_\upsilon $ - заданные пороговые
+
+\section{Сумма}
+
+\[ \frac{\sum^N_{i=0}x_i + 77}{1 + \Delta N} \]
+\[ \frac{\displaystyle\sum^N_{i=0}x_i + 77}{1 + \Delta N} \]
+
+\section{Два столбика}
+
+\begin{align}
+    &\frac{\displaystyle\sum^N_{i=0}x_i + 77}{1 + \Delta N} & 
+    \int^{\delta_{\alpha0}}_{-\delta_{\alpha0}}f_{\alpha}(\delta_\alpha)d\delta_\alpha &\geqslant P_\alpha \\
+    &b_1 < b_2,~ b_2 \text{-- простое}_\text{число} &
+    b_3&\& b_4
+\end{align}
+
+
+\section{Почти то же самое}
+
+\begin{equation}\label{eq:ref}
+    \begin{aligned}
+        &\frac{\sum^N_{i=0}x_i + 77}{1 + \Delta N} & 
+        \int^{\delta_{\alpha0}}_{-\delta_{\alpha0}}f_{\alpha}(\delta_\alpha)d\delta_\alpha &\geqslant P_\alpha \\
+        &b_1 < b_2,~ b_2 \text{-- простое}_\text{число} &
+        b_3&\&b_4
+    \end{aligned}
+\end{equation}
+
+На странице \pageref{eq:ref} есть формулы \eqref{eq:ref}.
+
+
+\end{document}

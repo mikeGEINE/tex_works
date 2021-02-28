@@ -1,0 +1,106 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{cmap}
+\usepackage{mathtext}
+\usepackage{amsmath,amssymb}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english, russian]{babel}
+\usepackage{bmstu-lab}
+\usepackage{lipsum}
+\usepackage{graphicx}
+\usepackage{diagbox}
+
+
+\begin{document}
+\graphicspath{{images/}{images2/}} % папки с картинками
+
+\worknumber{2}
+\variant{4}
+\workname{Рисунки и таблицы в \LaTeX}
+\discipline{Автоматизация процессов разработки научно-технической документации}
+\group{ИУ6-64Б}
+\author{М.А.Гейне}
+\tutor[Преподаватель]{Т.А.Ким}
+\bmstutitlelab
+
+\hypersetup{
+    linkcolor=black
+}
+
+\section{Задание 1}
+\begin{tabular}{c|c|c}
+    $\times$ & & $\bigcirc$ \\ \hline
+    & $\times$ & $\bigcirc$ \\ \hline
+    $\times$ & $\bigcirc$ & $\times$
+\end{tabular}
+\pagebreak
+\section{Задание 2}
+% \begin{tabular}{cc}
+% \begin{figure}[!t]
+%     \centering
+%     \includegraphics[height=2cm,keepaspectratio]{jake.jpg}
+%     \caption{Картинка вверху}
+% \end{figure}
+% \lipsum[1]
+% \begin{figure}[!b]
+%     \centering
+%     \includegraphics[height=2cm,keepaspectratio]{jake.jpg}
+%     \caption{Картинка внизу}
+% \end{figure}
+% &
+% \lipsum[1]
+% \begin{figure}[!h]
+%     \centering
+%     \includegraphics[height=2cm,keepaspectratio]{jake.jpg}
+%     \caption{Картинка в месте указания}
+% \end{figure}
+% \lipsum[1]
+% \end{tabular}
+
+
+\section{Задание 3}
+
+\begin{table}[h]
+    \begin{center}
+        \begin{tabular}{||cccccccccc||}
+            \hline
+            \hline
+            & & & & & & & & &  \\
+            \cline{2-6}
+            & \multicolumn{5}{|c|}{ } & & & &  \\
+            \cline{2-6}
+            & & & & & & & & & \\
+            & & & & & & & & &  \\
+            & &  & & & & & & &  \\
+            & & & & & & & & &  \\
+            & & & & & & & & &  \\
+            & & & & & & & & &  \\
+            \cline{5-5}
+            & & & & \multicolumn{1}{|c|}{ } & & & & &  \\
+            \cline{5-5}
+            & & & & & & & & &  \\
+            \hline \hline
+        \end{tabular}
+        \caption{Змейка}
+    \end{center}  
+\end{table}
+
+\section{Задание 4}
+
+\begin{table}[h]
+    \begin{center}
+        \begin{tabular}{|c|c|c|c|}
+            \hline
+            \multicolumn{2}{|c|}{\multirow{2}{*}{\backslashbox{4}{1}}}& \multicolumn{2}{|c|}{23} \\
+            \cline{3-4}
+            \multicolumn{2}{|c|}{} &5 &6 \\
+            \hline
+            \multicolumn{2}{|c|}{6} &7 &8 \\
+            \hline
+        \end{tabular}
+        \caption{Таблица с объединением ячеек}\label{tab:ref}
+    \end{center}
+\end{table}
+В таблице \ref{tab:ref} на странице \pageref{tab:ref} есть заголовок с диагональным разделителем. 
+
+\end{document}

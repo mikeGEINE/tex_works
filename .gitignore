@@ -1,3 +1,7 @@
 tmp/
 lab*/**
-!lab*/images
+!lab*/images*
+!lab*/images*/*
+!lab*/*.sty
+!lab*/*.tex
+!lab*/*.pdf
