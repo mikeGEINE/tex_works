@@ -9,6 +9,8 @@
 \usepackage{lipsum}
 \usepackage{graphicx}
 \usepackage{diagbox}
+\usepackage{caption}
+\usepackage{subcaption}
 
 
 \begin{document}
@@ -34,29 +36,29 @@
     $\times$ & $\bigcirc$ & $\times$
 \end{tabular}
 \pagebreak
-\section{Задание 2}
-% \begin{tabular}{cc}
-% \begin{figure}[!t]
-%     \centering
-%     \includegraphics[height=2cm,keepaspectratio]{jake.jpg}
-%     \caption{Картинка вверху}
-% \end{figure}
-% \lipsum[1]
-% \begin{figure}[!b]
-%     \centering
-%     \includegraphics[height=2cm,keepaspectratio]{jake.jpg}
-%     \caption{Картинка внизу}
-% \end{figure}
-% &
-% \lipsum[1]
-% \begin{figure}[!h]
-%     \centering
-%     \includegraphics[height=2cm,keepaspectratio]{jake.jpg}
-%     \caption{Картинка в месте указания}
-% \end{figure}
-% \lipsum[1]
-% \end{tabular}
 
+\section{Задание 2}
+% Можно хардкодить в таблицу
+\begin{table}[h]
+\begin{tabulary}{\textwidth}{CC}
+    \subcaptionbox{Картинка сверху}[\linewidth]{\includegraphics[height=2cm,keepaspectratio]{jake.jpg}}
+    
+    \lipsum[1]
+    \begin{subfigure}[b]{\linewidth}
+        \centering
+        \includegraphics[height=2cm,keepaspectratio]{jake.jpg}
+        \caption{Картинка снизу}
+    \end{subfigure}    
+    &
+    \lipsum[1]
+    
+    \begin{subfigure}[b]{\linewidth}
+        \centering
+        \includegraphics[height=2cm,keepaspectratio]{jake.jpg}
+        \caption{Картинка в месте размещения}
+    \end{subfigure} 
+\end{tabulary}
+\end{table}
 
 \section{Задание 3}
 
@@ -84,10 +86,10 @@
         \caption{Змейка}
     \end{center}  
 \end{table}
-
+\pagebreak
 \section{Задание 4}
 
-\begin{table}[h]
+\begin{table}[!h]
     \begin{center}
         \begin{tabular}{|c|c|c|c|}
             \hline
