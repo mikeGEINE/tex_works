@@ -12,6 +12,11 @@
 \usepackage{caption}
 \usepackage{subcaption}
 
+\DeclareCaptionLabelFormat{mysubfigure}{Рис.~#2}
+\captionsetup[subfigure]{labelformat=mysubfigure,labelsep=colon}
+
+\renewcommand\thesubfigure{\arabic{subfigure}}
+
 
 \begin{document}
 \graphicspath{{images/}{images2/}} % папки с картинками
@@ -29,36 +34,37 @@
     linkcolor=black
 }
 
+
 \section{Задание 1}
 \begin{tabular}{c|c|c}
     $\times$ & & $\bigcirc$ \\ \hline
     & $\times$ & $\bigcirc$ \\ \hline
     $\times$ & $\bigcirc$ & $\times$
 \end{tabular}
+
 \pagebreak
 
 \section{Задание 2}
-% Можно хардкодить в таблицу
 \begin{table}[h]
-\begin{tabulary}{\textwidth}{CC}
-    \subcaptionbox{Картинка сверху}[\linewidth]{\includegraphics[height=2cm,keepaspectratio]{jake.jpg}}
-    
-    \lipsum[1]
-    \begin{subfigure}[b]{\linewidth}
-        \centering
-        \includegraphics[height=2cm,keepaspectratio]{jake.jpg}
-        \caption{Картинка снизу}
-    \end{subfigure}    
-    &
-    \lipsum[1]
-    
-    \begin{subfigure}[b]{\linewidth}
-        \centering
-        \includegraphics[height=2cm,keepaspectratio]{jake.jpg}
-        \caption{Картинка в месте размещения}
-    \end{subfigure} 
-\end{tabulary}
+    \captionsetup{type=figure} % Судя по всему, subcaption смотрит на тип родителя при выборе типа подписи
+    % В итоге разницы между subcaptionbox и subfigure нет, тип подписи всё равно определён "родителем"
+    % Кроме того, в данном случае "родителем" является столбец. По этой причине нужно указывать тип в каждом столбце, но при смене типа нумерация сбивается
+    % Решение проблемы: объявить тип для всей таблицы - фигура (нумерация не сбивается), при необходимости подписать таблицу - сменить перед этип тип обратно на таблицу
+    \begin{tabular}{p{230pt}p{230pt}}
+        \subcaptionbox{Картинка сверху}[\linewidth]{\includegraphics[height=2cm,keepaspectratio]{jake.jpg}}
+        \lipsum[1]
+        \begin{subfigure}[b]{\linewidth}
+            \centering
+            \includegraphics[height=2cm,keepaspectratio]{jake.jpg}
+            \caption{Картинка снизу}
+        \end{subfigure}    
+        &
+        \lipsum[1]
+        \subcaptionbox{Картинка в месте размещения}[\linewidth]{\includegraphics[height=2cm,keepaspectratio]{jake.jpg}}
+    \end{tabular}
 \end{table}
+
+\pagebreak
 
 \section{Задание 3}
 
@@ -86,7 +92,7 @@
         \caption{Змейка}
     \end{center}  
 \end{table}
-\pagebreak
+
 \section{Задание 4}
 
 \begin{table}[!h]
