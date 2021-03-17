@@ -1,0 +1,52 @@
+\subsection{Создание счётчика}
+\newcounter{nc}[subsection]
+\stepcounter{nc}
+Счётчик \Roman{subsection}.\arabic{nc}: Мой текст...
+
+\stepcounter{nc}
+Счётчик \Roman{subsection}.\arabic{nc}: Мой текст...
+
+\stepcounter{nc}
+Счётчик \Roman{subsection}.\arabic{nc}: Мой текст...
+
+\subsection{Создание окружения}
+\newenvironment{myenvironment}[1]{\refstepcounter{nc}
+Окружение~\Roman{subsection}.\arabic{nc}.~<<#1>>}{}
+
+\begin{myenvironment}{Созданное окружение 1.}
+    Тело окружения 1
+\end{myenvironment}
+
+\begin{myenvironment}{Созданное окружение 2.}
+    Тело окружения 2
+\end{myenvironment}
+
+\subsection{Маркированный список}
+\begin{itemize}
+    \item Item 1
+    \item[$\bigstar$] Item 2
+    \begin{itemize}
+        \item[$\rightsquigarrow$ ] Item 2.1
+        \begin{itemize}
+            \item[$\sharp$ ] Item 2.1.1
+            \item[$\flat$ ] Item 2.1.2
+        \end{itemize}
+        \item[$\looparrowright$ ] Item 2.2
+    \end{itemize}
+\end{itemize}
+
+\subsection{Нумерованный список}
+\renewcommand{\labelenumii}{\Alph{enumii}}
+\renewcommand{\labelenumiii}{\Roman{enumiii}}
+\begin{enumerate}
+    \item Item 1
+    \item Item 2
+    \begin{enumerate}
+        \item Item 2.1
+        \begin{enumerate}
+            \item Item 2.1.1
+            \item Item 2.1.2
+        \end{enumerate}
+        \item Item 2.2
+    \end{enumerate}
+\end{enumerate}

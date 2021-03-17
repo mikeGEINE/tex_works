@@ -1,0 +1,46 @@
+% !TEX program = xelatex
+
+\documentclass[a4paper, 14pt]{extarticle}
+\usepackage[english, russian]{babel}
+\usepackage{fontspec} %% подготавливает загрузку шрифтов Open Type, True Type и др.
+\defaultfontfeatures{Ligatures={TeX},Renderer=Basic} %% свойства шрифтов по умолчанию
+\setmainfont[Ligatures={TeX,Historic}]{Times New Roman} %% зада¨eт основной шрифт документа
+\setsansfont{Comic Sans MS} %% зада¨eт шрифт без засечек
+\setmonofont{Courier New}
+\usepackage{indentfirst} % отменяет отсутствие абзацного отступа для первого абзаца.
+\frenchspacing % Правильные отступы для кавычек, пробелов, знаков препинания.
+\usepackage{bmstu-lab}
+\usepackage{fancyvrb}
+\usepackage{fvextra}
+\usepackage{verbatim}
+\hypersetup{
+    linkcolor=black
+}
+
+
+\begin{document}
+    \graphicspath{{images/}{images2/}} % папки с картинками
+
+    \worknumber{3}
+    \variant{4}
+    \workname{Русский язык в \LaTeX}
+    \discipline{Автоматизация процессов разработки научно-технической документации}
+    \group{ИУ6-64Б}
+    \author{М.А.Гейне}
+    \tutor[Преподаватель]{Т.А.Ким}
+    \bmstutitlelab
+
+    \textbf{Цель работы:} 
+    получить навыки по использованию LaTeX как инструмента 
+    для получения текстов, соответствующих русской типографской традиции.
+
+    \section{Задание 1}
+    \input{Lab3 Geine task1.tex}
+
+    \section{Код задания 1}
+    \VerbatimInput[frame=lines, breaklines=true,
+    breakanywhere=true]{'Lab3 Geine task1.tex'}
+
+    \section{Задание 2}
+    \input{Lab3 Geine task2.tex}
+\end{document}
