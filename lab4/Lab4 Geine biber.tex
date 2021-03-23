@@ -1,0 +1,84 @@
+% !TEX program = xelatex
+
+\documentclass[a4paper, 14pt]{extarticle}
+\usepackage[english, russian]{babel}
+\usepackage{fontspec} %% подготавливает загрузку шрифтов Open Type, True Type и др.
+\defaultfontfeatures{Ligatures={TeX},Renderer=Basic} %% свойства шрифтов по умолчанию
+\setmainfont[Ligatures={TeX,Historic}]{Times New Roman} %% зада¨eт основной шрифт документа
+\setsansfont{Comic Sans MS} %% зада¨eт шрифт без засечек
+\setmonofont{Courier New}
+\usepackage{indentfirst} % отменяет отсутствие абзацного отступа для первого абзаца.
+\frenchspacing % Правильные отступы для кавычек, пробелов, знаков препинания.
+\usepackage{bmstu-lab}
+\hypersetup{
+    linkcolor=black
+}
+\usepackage[
+backend=biber,
+bibencoding=utf8,
+sorting=ynt,
+maxcitenames=2,
+bibstyle=gost-authoryear,
+citestyle=gost-authoryear
+]{biblatex}
+\addbibresource{bib1.bib}
+\usepackage{acronym}
+
+\renewcommand*{\aclabelfont}[1]{\textbf{\acsfont{#1~---}}}
+
+
+\begin{document}
+    \graphicspath{{images/}{images2/}} % папки с картинками
+
+    \worknumber{3.2}
+    \variant{4}
+    \workname{библиография в \LaTeX}
+    \discipline{Автоматизация процессов разработки научно-технической документации}
+    \group{ИУ6-64Б}
+    \author{М.А.Гейне}
+    \tutor[Преподаватель]{Т.А.Ким}
+    \bmstutitlelab
+
+    \section{Библиография с использованием Biblatex}
+    Это сегмент текста, в котором я собираюсь процитировать тексты. Вот здесь я ссылаюсь на книгу \cite{harper2006inside}.
+    А тут я хочу привести в пример обзорную статью об умном доме: \cite{suresh2015review}.
+
+    Эта статья для тех, кто особенно заинтересован в технологии: \cite{sripan2012research}.
+    \nocite{robles2010applications}
+    
+    \printbibliography
+
+    \section{Создание списка сокращений}
+
+    \begin{acronym}
+        \acro{mp}[МП]{микропроцессор}
+        \acrodefplural{mp}[МП]{микропроцессором}
+        
+        \acro{alu}[АЛУ]{арифметико-логическое устройство}
+        \acrodefplural{alu}[АЛУ]{арифметико-логическим устройством}
+
+        \acro{mps}[МПС]{микропроцессорная система}
+        \acrodefplural{mps}[МПС]{микропроцессорной системой}
+
+        \acro{mk}[МК]{микроконтроллер}
+        \acrodefplural{mk}[МК]{микроконтроллером}
+
+        \acro{evm}[ЭВМ]{электронно-вычислительная машина}
+        \acrodefplural{evm}[ЭВМ]{электронно-вычислительной машины}
+    \end{acronym}
+
+    \Acl{mp} –-- устройство, осуществляющее программно-управляемую
+     обработку данных и выполняемое на интегральной технологии на одном кристалле. 
+     В состав входит \ac{alu}, регистры, генератор тактовых импульсов, шинный интерфейс, 
+     устройство управления.
+    
+    Комплекс аппаратных средств, в который входит микропроцессор, устройствово ввода, 
+    устройство постоянной и оперативной памяти, устройство вывода, каналы обмена данными, 
+    средства взаимодействия с оператором называется~\acp{mps}.
+
+    \Acl{mk} –-- однокристальная \acs{evm}, которая характ. набором  компонентов, выполняемых
+     в едином технологическом процессе. В состав входит: устройство ввода, устройство постоянной
+     и оперативной памяти, устройство вывода, генератор тактовых импульсов, блок регистров, периферийные устройства.
+
+    \tableofcontents
+\end{document}

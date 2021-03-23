@@ -5,3 +5,4 @@ lab*/**
 !lab*/*.sty
 !lab*/*.tex
 !lab*/*.pdf
+!lab*/*.bib
