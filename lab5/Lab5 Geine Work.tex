@@ -1,0 +1,55 @@
+\subsection{Задание 1}
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \draw [help lines, step = 0.5] (-1.5, 0) grid (5, 5);
+        \draw[->, thick] (-1.5, 0) -- (5,0) node[right] {$x$};
+        \draw[->, thick] (0, 0) -- (0,5) node[above] {$f(x)$};
+        \foreach \x in {-1,...,4}
+            \draw (\x, -0.1) -- (\x, 0.1) node[below] {$\x$};
+        \foreach \x in {1,...,4}
+            \draw (-0.1, \x) -- (0.1, \x) node[left] {$\x$};
+        \draw [red, very thick, domain = -1:4.5] plot (\x, {-2/5*abs(\x)+3})
+            node[right] {$f(x)= -\frac{2}{5} \left\lvert x \right\rvert +3 $};
+    \end{tikzpicture}
+    \caption{График функции}
+\end{figure}
+
+\subsection{Задание 2}
+\tikzstyle{startstop} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!30]
+\tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
+\tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered,draw=black, fill=orange!30]
+\tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30, aspect=2.5]
+\tikzstyle{arrow} = [thick,->,>=stealth]
+\usetikzlibrary{positioning}
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[node distance=2cm, scale=0.3]
+        \node (start) [startstop] {Начало};
+        \node (in) [io, below of=start] {Загрузка A, B и n};
+        \node (reset_c) [process, below of=in] {$C=0$};
+        \node (check_b) [decision, below of=reset_c] {$b_0=1$?};
+        \node (sum) [process, below of=check_b] {$C=C+A$};
+        \node (shift) [process, below of=sum] {Сдвиг вправо $C$ и $B$};
+        \node (dec) [process, below of=shift] {$n=n-1$};
+        \node (check_end) [decision, below of=dec] {$n=0$?};
+        \node (out) [io, below of=check_end] {Вывод $C=A*B$};
+        \node (stop) [startstop, below of=out] {Конец};
+        \draw[arrow] (start) -- (in);
+        \draw[arrow] (in) -- (reset_c);
+        \draw[arrow] (reset_c) -- (check_b);
+        \draw[arrow] (check_b) -- (sum);
+        \draw[arrow] (sum) -- (shift);
+        \draw[arrow] (shift) -- (dec);
+        \draw[arrow] (dec) -- (check_end);
+        \draw[arrow] (check_end) -- (out);
+        \draw[arrow] (out) -- (stop);
+        \path (reset_c) -- (check_b) coordinate[midway] (loop);
+        \coordinate [left=2cm of check_end] (loop_coord);
+        \draw[arrow] (check_end) -- (loop_coord) |- (loop);
+        \path (sum) -- (shift) coordinate[midway] (skip);
+        \coordinate [right=1cm of check_b] (skip_coord);
+        \draw[arrow] (check_b) -- (skip_coord) |- (skip);
+    \end{tikzpicture}
+    \caption{Схема алгоритма умножения, начиная с младших разрядов множителя}
+\end{figure}
