@@ -1,0 +1,86 @@
+\documentclass[t]{beamer}
+\usetheme{Szeged}
+\usecolortheme{beaver}
+% \beamertemplatenavigationsymbolsempty
+\usepackage{cmap}					% поиск в PDF
+\usepackage{mathtext} 				% русские буквы в формулах
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+\usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools} % AMS
+\usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+\usepackage{tikz} % Работа с графикой
+\usetikzlibrary{shapes,shapes.multipart}
+\usetikzlibrary{shapes.geometric, arrows}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\usepackage{float}
+\usepackage{graphicx}
+
+\title{Лабораторная работа 7}
+\subtitle{Документы и презентации в \LaTeX}
+\date{\today}
+\author{Гейне М. А.}
+\tikzstyle{startstop} = [rectangle, rounded corners, minimum width=3cm, minimum height=0.7cm,text centered, draw=black, fill=red!30]
+\tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=0.7cm, text centered, draw=black, fill=blue!30]
+\tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=0.7cm, text centered,draw=black, fill=orange!30]
+\tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=0.7cm, text centered, draw=black, fill=green!30, aspect=3.5]
+\tikzstyle{arrow} = [thick,->,>=stealth]
+\usetikzlibrary{positioning}
+
+\begin{document}
+
+    \frame[plain]{\titlepage}
+
+    \begin{frame}
+        \frametitle{Графика в TikZ}
+        \framesubtitle{Схема алгоритма умножения, начиная с младших разрядов множителя}
+        \begin{figure}[H]
+            \centering
+            \scalebox{0.5}{
+                \begin{tikzpicture}[node distance=1.2cm]
+                    \node (start) [startstop] {Начало};
+                    \node (in) [io, below of=start] {Загрузка A, B и n};
+                    \draw[arrow] (start) -- (in);
+                    \pause
+
+                    \node(reset_c) [process, below of=in] {$C=0$};
+                    \draw[arrow] (in) -- (reset_c);
+
+                    \uncover<3->{
+                        \node (check_b) [decision, below of=reset_c] {$b_0=1$?};
+                        \draw[arrow] (reset_c) -- (check_b);
+
+                        \node (sum) [process, below of=check_b] {$C=C+A$};
+                        \draw[arrow] (check_b) -- (sum);
+
+                        \node (shift) [process, below of=sum] {Сдвиг вправо $C$ и $B$};
+                        \draw[arrow] (sum) -- (shift);
+                        \path (sum) -- (shift) coordinate[midway] (skip);
+                        \coordinate [right=1cm of check_b] (skip_coord);
+                        \draw[arrow] (check_b) -- (skip_coord) |- (skip);
+
+                        \node (dec) [process, below of=shift] {$n=n-1$};
+                        \draw[arrow] (shift) -- (dec);
+                        
+                        \node (check_end) [decision, below of=dec] {$n=0$?};
+                        \draw[arrow] (dec) -- (check_end);
+                        \path (reset_c) -- (check_b) coordinate[midway] (loop);
+                        \coordinate [left=2cm of check_end] (loop_coord);
+                        \draw[arrow] (check_end) -- (loop_coord) |- (loop);
+
+                    }
+
+                    \uncover<4->{
+                        \node (out) [io, below of=check_end] {Вывод $C=A*B$};
+                        \draw[arrow] (check_end) -- (out);
+    
+                        \node (stop) [startstop, below of=out] {Конец};
+                        \draw[arrow] (out) -- (stop);
+                    }
+                \end{tikzpicture}
+            }
+            \caption{Схема алгоритма умножения}
+        \end{figure}
+    \end{frame}
+\end{document}

@@ -1,0 +1,46 @@
+% !TEX program = xelatex
+
+\documentclass[a4paper, 14pt]{extarticle}
+\usepackage[english, russian]{babel}
+\usepackage{fontspec} %% подготавливает загрузку шрифтов Open Type, True Type и др.
+\defaultfontfeatures{Ligatures={TeX},Renderer=Basic} %% свойства шрифтов по умолчанию
+\setmainfont[Ligatures={TeX,Historic}]{Times New Roman} %% зада¨eт основной шрифт документа
+\setsansfont{Comic Sans MS} %% задаёт шрифт без засечек
+\setmonofont[Scale=0.75]{Courier New}
+\usepackage{indentfirst} % отменяет отсутствие абзацного отступа для первого абзаца.
+\frenchspacing % Правильные отступы для кавычек, пробелов, знаков препинания.
+\usepackage{bmstu-lab}
+\usepackage{fancyvrb}
+\usepackage{fvextra}
+\usepackage{verbatim}
+\usepackage{float}
+\hypersetup{
+    linkcolor=black
+}
+\usepackage{pdfpages}
+
+
+\begin{document}
+    \graphicspath{{images/}{images2/}} % папки с картинками
+
+    \worknumber{6}
+    \variant{4}
+    \workname{Презентации в beamer}
+    \discipline{Автоматизация процессов разработки научно-технической документации}
+    \group{ИУ6-64Б}
+    \author{М.А.Гейне}
+    \tutor[Преподаватель]{Т.А.Ким}
+    \bmstutitlelab
+
+    \textbf{Цель работы:} 
+    получить навыки по использованию LaTeX как инструмента для создания строгих презентаций.
+
+    \section{Код задания}
+    \VerbatimInput[frame=lines, breaklines=true,
+    breakanywhere=true]{'Lab6 Geine Work.tex'}
+
+    
+    \section{Результаты выполнения}
+    \includepdf[nup=1x3, delta=5mm 5mm, scale=0.9, frame,
+    pages=-]{Lab6 Geine Work.pdf}
+\end{document}
