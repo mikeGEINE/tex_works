@@ -38,18 +38,20 @@
         \draw[arrow] (start) -- (in);
         \draw[arrow] (in) -- (reset_c);
         \draw[arrow] (reset_c) -- (check_b);
-        \draw[arrow] (check_b) -- (sum);
+        \path (check_b) -- (sum) coordinate[midway] (yes_place);
+        \draw[arrow] (check_b) -- (yes_place) node[right] {Да} -- (sum);
         \draw[arrow] (sum) -- (shift);
         \draw[arrow] (shift) -- (dec);
         \draw[arrow] (dec) -- (check_end);
-        \draw[arrow] (check_end) -- (out);
+        \path (check_end) -- (out) coordinate[midway] (yes_place1);
+        \draw[arrow] (check_end) -- (yes_place1) node[right] {Да} -- (out);
         \draw[arrow] (out) -- (stop);
         \path (reset_c) -- (check_b) coordinate[midway] (loop);
         \coordinate [left=2cm of check_end] (loop_coord);
-        \draw[arrow] (check_end) -- (loop_coord) |- (loop);
+        \draw[arrow] (check_end)  -- (loop_coord) node[below]{Нет} |- (loop);
         \path (sum) -- (shift) coordinate[midway] (skip);
         \coordinate [right=1cm of check_b] (skip_coord);
-        \draw[arrow] (check_b) -- (skip_coord) |- (skip);
+        \draw[arrow] (check_b) -- (skip_coord) node[above]{Нет} |- (skip);
     \end{tikzpicture}
     \caption{Схема алгоритма умножения, начиная с младших разрядов множителя}
 \end{figure}
