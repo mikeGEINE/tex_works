@@ -1,0 +1,229 @@
+%%% Работа с русским языком
+\usepackage{cmap}					% поиск в PDF
+\usepackage{mathtext} 				% русские буквы в формулах
+% \usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+
+
+
+%%% Дополнительная работа с математикой
+\usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools} % AMS
+\usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+
+%% Номера формул
+\mathtoolsset{showonlyrefs=false} % Показывать номера только у тех формул, на которые есть \eqref{} в тексте.
+
+%% Перенос знаков в формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+
+%%% Работа с картинками
+\usepackage{graphicx}  % Для вставки рисунков
+\graphicspath{{images/}{images2/}}  % папки с картинками
+\setlength\fboxsep{3pt} % Отступ рамки \fbox{} от рисунка
+\setlength\fboxrule{1pt} % Толщина линий рамки \fbox{}
+\usepackage{wrapfig} % Обтекание рисунков текстом
+
+%%% Работа с таблицами
+\usepackage{array,tabularx,tabulary,booktabs} % Дополнительная работа с таблицами
+\usepackage{longtable}  % Длинные таблицы
+\usepackage{multirow} % Слияние строк в таблице
+
+%%% Программирование
+\usepackage{etoolbox} % логические операторы
+
+\usepackage{setspace} % Интерлиньяж
+\onehalfspacing % Интерлиньяж 1.5
+%\doublespacing % Интерлиньяж 2
+%\singlespacing % Интерлиньяж 1
+
+\usepackage{lastpage} % Узнать, сколько всего страниц в документе.
+
+\usepackage{soulutf8} % Модификаторы начертания
+
+\usepackage{hyperref}
+\usepackage[usenames,dvipsnames,svgnames,table,rgb]{xcolor}
+\hypersetup{				% Гиперссылки
+    unicode=true,           % русские буквы в раздела PDF
+    pdftitle={Заголовок},   % Заголовок
+    pdfauthor={Автор},      % Автор
+    pdfsubject={Тема},      % Тема
+    pdfcreator={Создатель}, % Создатель
+    pdfproducer={Производитель}, % Производитель
+    pdfkeywords={keyword1} {key2} {key3}, % Ключевые слова
+    colorlinks=true,       	% false: ссылки в рамках; true: цветные ссылки
+    linkcolor=red,          % внутренние ссылки
+    citecolor=green,        % на библиографию
+    filecolor=magenta,      % на файлы
+    urlcolor=cyan           % на URL
+}
+
+\usepackage{extsizes} % Возможность сделать 14-й шрифт
+\usepackage{multicol} % Несколько колонок
+
+%%% Страница
+\usepackage{extsizes} % Возможность сделать 14-й шрифт
+\usepackage{geometry} % Простой способ задавать поля
+	\geometry{top=20mm}
+	\geometry{bottom=20mm}
+	\geometry{left=30mm}
+	\geometry{right=15mm}
+
+%инициализируем нашу "строковую переменную" либо начальным значением по умолчанию, либо ошибкой вызова, если она не была "переписана" до чтения значения.
+\newcommand{\@variant}{\@latex@error{No \noexpand\variant given}\@ehc} %Вывод ошибки если 
+\newcommand{\variant}[1]{\renewcommand\@variant{#1}}  %В результате переопределяем команду \@
+
+\newcommand{\@worknumber}{\@latex@error{No \noexpand\worknumber given}\@ehc} %Вывод ошибки если 
+\newcommand{\worknumber}[1]{\renewcommand\@worknumber{#1}}  %В результате переопределяем команду \@
+
+\newcommand{\@workname}{\@latex@error{No \noexpand\workname given}\@ehc} %Вывод ошибки если 
+\newcommand{\workname}[1]{\renewcommand\@workname{#1}}  %В результате переопределяем команду \@
+
+\newcommand{\@discipline}{\@latex@error{No \noexpand\discipline given}\@ehc} %Вывод ошибки если 
+\newcommand{\discipline}[1]{\renewcommand\@discipline{#1}}  %В результате переопределяем команду \@
+
+\newcommand{\@group}{\@latex@error{No \noexpand\group given}\@ehc} %Вывод ошибки если 
+\newcommand{\group}[1]{\renewcommand\@group{#1}}  %В результате переопределяем команду \@
+
+\newcommand{\@tutor}{\@latex@error{No \noexpand\tutor given}\@ehc} %Вывод ошибки если 
+\newcommand{\@tutorstatus}{\@latex@error{No \noexpand\tutorstatus given}\@ehc} %Вывод ошибки если 
+\newcommand{\tutor}[2][Преподаватель]{\renewcommand\@tutor{#2}\renewcommand\@tutorstatus{#1}}  %В результате переопределяем команду \@
+
+% === LABWORKTITLE ===
+\newcommand{\labworktitlelab}{
+\textbf{
+    \noindent\Large{ОТЧЕТ}\\
+    \noindent\large{по лабораторной работе № \@worknumber}
+}\\
+}
+
+\newcommand{\labworktitlehome}{
+\textbf{
+    \noindent\Large{ОТЧЕТ}\\
+    \noindent\large{по домашнему заданию № \@worknumber}
+}\\
+}
+
+% === LABVATIANT ===
+\newcommand{\labvariant}{
+\textbf{
+    \noindent\large{вариант № \@variant}
+}\\
+}
+
+% === WORKTITLE ===
+\newcommand{\worktitle}{
+    \noindent
+    \renewcommand{\arraystretch}{1} % расстояние между с троками
+    \begin{tabular}{ p{3.1cm} p{10cm} }
+        \textbf{Название} & \@workname \\ 
+        \textbf{Дисциплина} & \@discipline \\  
+    \end{tabular}\\
+}
+
+% === BMSTUHEAD ===
+\newcommand{\bmstuhead}{
+    \def\arraystretch{0} % вертикальный пропуск между строками таблицы = 0
+    \noindent % Подавление абзацного отступа
+    \vspace{-1.5cm}
+
+    \begin{tabular}{m{2cm} m{\textwidth-3cm}} %таблица для размещения текста и логотипа МГТУ.
+    \includegraphics[width=2cm, height=2.3cm, keepaspectratio=false]{Logo} & % & отделяет левую колонку от правой, в левой ставим логотип, 
+    \begin{center}
+    	\begin{singlespacing} \footnotesize\textbf{ 
+          Министерство науки и высшего образования Российской Федерации\\
+          Федеральное государственное бюджетное образовательное учреждение \\
+          высшего образования\\
+          «Московский государственный технический университет\\
+          имени Н.Э. Баумана\\
+          (национальный исследовательский университет)»\\
+          (МГТУ им. Н.Э. Баумана)\\ }
+    	\end{singlespacing} %интерлиньяж
+    \end{center}
+    \end{tabular}
+    
+    \fontsize{2}{2}\selectfont
+    \noindent\makebox[\linewidth]{\rule{\textwidth}{2.7pt}} %горизонтальные линии при помощи \rule
+    \noindent\makebox[\linewidth]{\rule{\textwidth}{0.7pt}}
+    
+    \vspace{5mm} % вертикальный отступ, рассчитан опытным путём
+    \normalsize
+    \noindent ФАКУЛЬТЕТ \textbf{Информатика и системы управления} %\underline для подчёркивания, \uline с пакетом \usepackage{ulem} предпочтительнее.
+    \vspace{2mm}
+    
+    \noindent КАФЕДРА \textbf{Компьютерные системы и сети}
+    \vspace{2mm}
+    
+    \noindent НАПРАВЛЕНИЕ ПОДГОТОВКИ \textbf{09.03.03 Прикладная информатика}
+}
+
+\newcommand{\signs}{
+    \noindent
+    \renewcommand{\arraystretch}{0.6}
+    \begin{tabularx}{\textwidth}{ l >{\centering\arraybackslash}X c }
+         \noindent{Студент  гр. \@group} & \underline{\hspace{4cm}} & \underline{\smash{\makebox[4cm]{\@author}}} \\
+         \noindent & \footnotesize{(Подпись, дата)} & \footnotesize{(И.О.Фамилия)} \\[0.25cm]
+         \noindent{\@tutorstatus} & \underline{\hspace{4cm}} & \underline{\smash{\makebox[4cm]{\@tutor}}} \\
+         \noindent & \footnotesize{(Подпись, дата)} & \footnotesize{(И.О.Фамилия)} \\
+    \end{tabularx}
+    \renewcommand{\arraystretch}{1}
+
+}
+
+% === BMSTUTITLE ===
+\newcommand{\bmstutitlelab}{
+    \thispagestyle{empty} % отстуствие стилей для страницы, которые определены в article.
+    \bmstuhead
+    
+    \vfill  % ВАЖНО! Пропускает ровно столько, сколько может пропустить, выравнивания среди нескольких \vfill. Аналогичная команда \hfill для горизонтального заполнения
+    \large{
+    \begin{center}
+        \labworktitlelab
+        \labvariant
+    \end{center}
+    
+    \vspace{1cm}
+    
+    \worktitle
+    }
+    
+    \vfill
+    
+    \signs
+    \vspace{1cm}
+    \begin{center}
+    \large Москва, \the\year %Логично, что печатаем текущим годом, но можно это вынести как необязательный параметр.
+    \end{center}
+    
+    \thispagestyle{empty}
+    \newpage
+}
+
+\newcommand{\bmstutitlehome}{
+    \thispagestyle{empty} % отстуствие стилей для страницы, которые определены в article.
+    \bmstuhead
+    
+    \vfill  % ВАЖНО! Пропускает ровно столько, сколько может пропустить, выравнивания среди нескольких \vfill. Аналогичная команда \hfill для горизонтального заполнения
+    \large{
+    \begin{center}
+        \labworktitlehome
+        \labvariant
+    \end{center}
+    
+    \vspace{1cm}
+    
+    \worktitle
+    }
+    
+    \vfill
+    
+    \signs
+    \vspace{1cm}
+    \begin{center}
+    \large Москва, \the\year %Логично, что печатаем текущим годом, но можно это вынести как необязательный параметр.
+    \end{center}
+    
+    \thispagestyle{empty}
+    \newpage
+}
