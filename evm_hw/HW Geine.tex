@@ -1,0 +1,109 @@
+% !TEX program = xelatex
+
+\documentclass[a4paper, 14pt]{article}
+\usepackage{bmstu-lab}
+\hypersetup{
+    linkcolor=black
+}
+% \usepackage{showframe}
+
+
+\begin{document}
+    \graphicspath{{images/}{images2/}} % папки с картинками
+    \renewcommand{\figurename}{Рисунок}
+
+    \worknumber{1}
+    \variant{67}
+    \workname{Проектирование устройств управления с жесткой логикой}
+    \discipline{Основы проектирования устройств ЭВМ}
+    \group{ИУ6-64Б}
+    \author{М.А.Гейне}
+    \tutor[Преподаватель]{А.Ю.Попов}
+    \bmstutitlehome
+
+    \textbf{Цель работы:} изучить методы проектирования устройств управления с жесткой логикой.
+    \section*{Задание}
+    В ходе выполнения домашнего задания необходимо разработать устройство
+    управления схемного типа, обрабатывающий входное командное слово
+    $ C ={ABCDEF}$ и выдающий сигналы управления $M={M_0,…,M_{k-1}}$
+    операционному блоку в соответствии с приведенной в индивидуальном задании
+    логикой работы.
+    Домашнее задание выполняется в несколько этапов.
+
+    \renewcommand{\labelenumii}{\Alph{enumii}}
+    \begin{enumerate}
+        \item \begin{enumerate}
+            \item По диаграмме переходов автомата (Приложение 1) и описанию условий
+            переходов и активных сигналов (дополнительный файл варианты.pdf),
+            определить тип управляющего автомата (автомат Мили или Мура, смешанный).
+            Выбор обосновать.
+            \item Произвести кодирование состояний управляющего автомата. Составить схему
+            переходов/состояний полученного автомата. Схему представить в отчете. 
+        \end{enumerate} 
+        \item Разработать описание устройства управления на языке VHDL, для чего
+        использовать приведенные в Приложении 2 шаблоны для автоматов Мили и
+        Мура.
+        Разработать тестовое описание для устройства, представляющее собой
+        генератор входных сигналов (см. Приложение 3). Тестовое описание должно
+        обеспечивать проверку всех ветвей автомата
+        \item \begin{enumerate}
+            \item Установить ПО ModelSim PE (или аналогичный продукт: Xilinx ISE, Altera
+            Quartus)
+            \item Выполнить моделирование полученного теста в ПО ModelSim PE. Результаты
+            моделирования представить в отчете.
+        \end{enumerate}
+    \end{enumerate}
+
+    \section*{Вариант 67}
+    \begin{table}[H]
+        \caption{Варианты диаграмм и активных сигналов}
+        \begin{tabular}{|c|c|c|l|l|l|l|l|}
+            \hline
+            \multirow{2}{*}{Вариант} & \multirow{2}{*}{Диаграмма переходов} & \multicolumn{6}{c|}{Активные сигналы M в состоянии}                                                                                                      \\ \cline{3-8} 
+                                     &                                      & S1                     & \multicolumn{1}{c|}{S2} & \multicolumn{1}{c|}{S3} & \multicolumn{1}{c|}{S4} & \multicolumn{1}{c|}{S5} & \multicolumn{1}{c|}{S6} \\ \hline
+            \multicolumn{1}{|l|}{67} & \multicolumn{1}{l|}{3}               & \multicolumn{1}{l|}{2} & 0                       & 1,7                     & 5,6                     & 3                       & 4                       \\ \hline
+        \end{tabular}
+    \end{table}
+
+    \begin{table}[H]
+        \caption{Условия переходов и наименование отладочной платы}  
+        \begin{tabular}{|l|l|l|l|l|l|l|}
+            \hline
+            \multicolumn{1}{|c|}{\multirow{2}{*}{\textbf{Вариант}}} & \multicolumn{1}{c|}{\multirow{2}{*}{\textbf{Название отладочной платы}}} & \multicolumn{5}{c|}{\textbf{Активные сигналы C в состоянии}}                                                                                                                 \\ \cline{3-7} 
+            \multicolumn{1}{|c|}{}                                  & \multicolumn{1}{c|}{}                                                    & \multicolumn{1}{c|}{\textbf{У1}} & \multicolumn{1}{c|}{\textbf{У2}} & \multicolumn{1}{c|}{\textbf{У3}} & \multicolumn{1}{c|}{\textbf{У4}} & \multicolumn{1}{c|}{\textbf{У5}} \\ \hline
+            \multirow{5}{*}{67}                                     & \multirow{5}{*}{Spartan3}                                                & @                                & E\_F                             & CD                               & \_A\_C                           & @                                \\ \cline{3-7} 
+                                                                    &                                                                          & \multicolumn{1}{c|}{\textbf{У6}} & \textbf{У7}                      & \textbf{У8}                      & \textbf{У9}                      & \textbf{У10}                     \\ \cline{3-7} 
+                                                                    &                                                                          & D\_B                             & @                                & A\_C                              & C\_D                            & @                                \\ \cline{3-7} 
+                                                                    &                                                                          & \textbf{У11}                     & \textbf{У12}                     & \textbf{У13}                     & \textbf{У14}                     & \textbf{У15}                     \\ \cline{3-7} 
+                                                                    &                                                                          & A+C                              & \_B                               & @                                & DF                            & @                              \\ \hline
+            \end{tabular}  
+    \end{table}
+    
+    \begin{table}[H]
+        \caption{Активные сигналы для переходов}
+        \begin{tabular}{|l|l|l|l|l|l|}
+        \hline
+        \multicolumn{1}{|c|}{\multirow{2}{*}{\textbf{Вариант}}} & \multicolumn{5}{c|}{\textbf{Активные сигналы M в состоянии}}                                                                                                                 \\ \cline{2-6} 
+        \multicolumn{1}{|c|}{}                                  & \multicolumn{1}{c|}{\textbf{У1}} & \multicolumn{1}{c|}{\textbf{У2}} & \multicolumn{1}{c|}{\textbf{У3}} & \multicolumn{1}{c|}{\textbf{У4}} & \multicolumn{1}{c|}{\textbf{У5}} \\ \hline
+        \multirow{5}{*}{67}                                     &                                  &                                  &                                  &                                  &                                  \\ \cline{2-6} 
+                                                                & \multicolumn{1}{c|}{\textbf{У6}} & \textbf{У7}                      & \textbf{У8}                      & \textbf{У9}                      & \textbf{У10}                     \\ \cline{2-6} 
+                                                                &                                  &                                  &                                  & 5, 6                             & 5, 7                             \\ \cline{2-6} 
+                                                                & \textbf{У11}                     & \textbf{У12}                     & \textbf{У13}                     & \textbf{У14}                     & \textbf{У15}                     \\ \cline{2-6} 
+                                                                &                                  & 4                                &                                  &                                  &                                  \\ \hline
+        \end{tabular}
+    \end{table}
+
+    \imageinsert{general transitions scheme}{0.7}{Общая диаграмма переходов}{fig:gen_trans}
+    \pagebreak
+
+    \section{Определение заданного автомата}
+    В соответствии с вариантом домашнего задания была составлена диаграмма переходов состояний автомата, приведённая на рисунке \ref{fig:trans_diag}.
+    \imageinsert{transitions diagram}{0.52}{Диаграмма переходов состояний заданного автомата}{fig:trans_diag}
+    Так как выходные сигналы определены в некоторых случаях только состояниями (как в состоянии S2), а в некоторых 
+    случаях определены ещё и входными сигналами (переход У9), то можно сказать, что заданный автомат является автоматом смешанного типа.
+
+    \section{Разработка устройства}
+    После того, как был определён тип автомата, на языке VHDL был описан заданный автомат.
+    Автомат имеет асинхронные входы и выходы. Код устройства приведён ниже.
+    \codeinsert{'codes/state_machine.vhd'}
+\end{document}

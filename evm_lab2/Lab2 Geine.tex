@@ -1,36 +1,14 @@
 % !TEX program = xelatex
 
 \documentclass[a4paper, 14pt]{extarticle}
-\usepackage[english, russian]{babel}
-\usepackage{fontspec} %% подготавливает загрузку шрифтов Open Type, True Type и др.
-\defaultfontfeatures{Ligatures={TeX},Renderer=Basic} %% свойства шрифтов по умолчанию
-\setmainfont[Ligatures={TeX,Historic}]{Times New Roman} %% зада¨eт основной шрифт документа
-\setsansfont{Comic Sans MS} %% задаёт шрифт без засечек
-\setmonofont{Courier New}
-\usepackage{indentfirst} % отменяет отсутствие абзацного отступа для первого абзаца.
-\frenchspacing % Правильные отступы для кавычек, пробелов, знаков препинания.
 \usepackage{bmstu-lab}
-\usepackage{fancyvrb}
-\usepackage{fvextra}
-\usepackage{verbatim}
-\usepackage{float}
-\usepackage{caption}
 \hypersetup{
     linkcolor=black
 }
 
 \begin{document}
     \graphicspath{{images/}{images2/}} % папки с картинками
-    \captionsetup{labelsep=endash}
     \renewcommand{\figurename}{Рисунок}
-
-    \newcommand{\imageinsert}[4]{
-        \begin{figure}[H]
-            \centering
-            \includegraphics[scale=#2,keepaspectratio]{#1}
-            \caption{#3}\label{#4}
-        \end{figure}
-    }
 
     \worknumber{2}
     \variant{4}
@@ -94,8 +72,7 @@
 
     \section{Текстовое описание автомата}
     После того, как были выведены необходимые логические функции, было создано текстовое описание модуля на языке VHDL. Текст модуля приведён ниже.
-    \VerbatimInput[frame=lines, breaklines=true,
-    breakanywhere=true, baselinestretch=1, fontsize=\small]{'codes/delay_module.vhd'}
+    \codeinsert{'codes/delay_module.vhd'}
 
     \section{Тестирование автомата}
     Для созданного автомата был разработан testbench средствами ISE.
@@ -110,8 +87,7 @@
     Кроме того, необходимо обеспечить едновременное включение всех 4 индикаторов. Для этого на каждый из индикаторов последовательно выводится код очередной цифры, переключение текущего индикатора производится с большой скоростью.
     
     Таким образом, схема управления производит выбор индикатора, на который производится вывод, и выбор тетрады из счётчика для вывода на индикатор. Код устройства приведён ниже.
-    \VerbatimInput[frame=lines, breaklines=true,
-    breakanywhere=true, baselinestretch=1, fontsize=\small]{'codes/sevenseg_mux.vhd'}
+    \codeinsert{'codes/sevenseg_mux.vhd'}
 
     Для проверки правильности работы устройства был разработан testbench, временная диагрмма с которого приведена на рисунке \ref{fig:sevenseg_mux_test}.
     \imageinsert{led_test.png}{0.62}{Временная диаграмма теста устройства управления}{fig:sevenseg_mux_test}
@@ -121,15 +97,13 @@
     Для этого необходимо разработать преобразователь, который получив на входе 4 разряда цифры выдаст 8 разрядов кода активации индикатора.
     Такой преобразователь представляет из себя, по сути, Look-Up Table.
     Текст описания устройства приведён ниже.
-    \VerbatimInput[frame=lines, breaklines=true,
-    breakanywhere=true, baselinestretch=1, fontsize=\small]{'codes/sevenseg_decoder.vhd'}
+    \codeinsert{'codes/sevenseg_decoder.vhd'}
 
     \section{Разработка основного модуля проекта}
     Основной модуль проекта является устройством верхнего уровня, который и будет считать нажатия на кнопку.
     Основной модуль включает в себя разработанные ранее модули, а также 16-разрядный счётчик нажатий и делитель частоты для корректной работы схемы управления индикаторами.
     Код разработанного основного модуля приведён ниже.
-    \VerbatimInput[frame=lines, breaklines=true,
-    breakanywhere=true, baselinestretch=1, fontsize=\small]{'codes/main_ex.vhd'}
+    \codeinsert{'codes/main_ex.vhd'}
 
     Для проверки корректности работы устройства был разработан testbench, временная диаграмма работы которого приведена на рисунке \ref{fig:main_test}.
     \imageinsert{main_test.png}{0.85}{Временная диаграмма теста основного модуля}{fig:main_test}
@@ -137,8 +111,7 @@
     \section{Файл ограничений}
     В проект был добавлен файл ограничений, в котором были назначены внешние выводы сигналам разрабатываемого устройства в соответствии с заданными в методических указаниях для платы XC3S200.
     Код файла ограничений приведён ниже.
-    \VerbatimInput[frame=lines, breaklines=true,
-    breakanywhere=true, baselinestretch=1, fontsize=\small]{'codes/main_xc3s200.ucf'}
+    \codeinsert{'codes/main_xc3s200.ucf'}
 
     \section{Синтез схемы}
     В САПР ISE был проведён синтез полученного устройства. Сведения о результатах проектирования устройства отображены на рисунке \ref{fig:synthesis_res}. 
