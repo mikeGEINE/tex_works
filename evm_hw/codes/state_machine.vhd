@@ -33,7 +33,7 @@ entity state_machine is
 PORT(	c : IN std_logic_vector ( 6 DOWNTO 1 );
 		 clk : IN std_logic;
 		 rst : IN std_logic;
-		 m : OUT std_logic_vector ( 7 DOWNTO 1 ) );
+		 m : OUT std_logic_vector ( 7 DOWNTO 0 ) );
 end state_machine;
 
 architecture Behavioral of state_machine is
@@ -66,10 +66,10 @@ begin
 				next_state<=s1;
 			end if;
 		when s2 =>
-			m<=(1=>'1', others=>'0');
+			m<=(0=>'1', others=>'0');
 			if (c(1)='1' and c(3)='0') then
 				next_state<=s3;
-			elsif (c(4)='1' and c(2)='1') then
+			elsif (c(4)='1' and c(2)='0') then
 				next_state<=s5;
 			else
 				next_state<=s2;
