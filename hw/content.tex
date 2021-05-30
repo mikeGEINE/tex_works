@@ -1,0 +1,132 @@
+\newtheorem{theorem}{Теорема}[section]
+\theoremstyle{definition}
+\newtheorem{definition}{Определение}[section]
+\renewcommand{\proofname}{\rm Д о к а з а т е л ь с т в о}
+\setcounter{section}{13}
+\titleformat{\section}[hang]{\normalfont\Large\bfseries}{\thesection. }{0.1em}{}
+\titleformat{\subsection}[hang]{\normalfont\Large\bfseries}{\thesubsection. }{0.1em}{}
+
+По определению однократного предела для любого $x \in X$, $x \neq x_0$,
+\begin{multline}
+    \forall \varepsilon > 0 \exists\tilde{\delta}=\tilde{\delta}(\varepsilon)>0\forall y\in Y \\
+    \left( 0< \left\lvert y - y_0 \right\rvert < \tilde{\delta} \Rightarrow \left\lvert f(x,y)-\varphi(x)\right\rvert < \frac{\varepsilon}{2}  \right)   
+\end{multline}
+Возьмем $x\in X$ из проколотой $\delta$-окрестности точки $x_0$ и рассмотрим разность $\varphi (x)−A$. 
+Прибавим и отнимем в этом выражении \(f(x,y)$ с $y\in Y\), \(0< |y−y_0|< \min \{\delta, \tilde{\delta}\}\), и получим оценку
+\begin{multline}
+    \left\lvert \varphi(x) - A\right\rvert = |\varphi(x)\pm f(x,y)-A\leqslant \\
+    \leqslant |\varphi(x)-f(x,y)|+|f(x,y)-A|<\frac{\varepsilon}{2}+ \frac{\varepsilon}{2} = \varepsilon,
+\end{multline}
+т.е. $\displaystyle \lim_{x\rightarrow x_0}\lim_{y\rightarrow y_0} f(x,y) = A$ \qed
+\pagebreak
+
+\section{Непрерывность функции многих переменных}
+\subsection{Непрерывность в точке. Локальные свойства непрерывных функций}
+Пусть функция $f(x)$ определена на множестве $X\subseteq \mathbb{R}^n$ и $x_0 \in X$.
+
+\begin{definition}
+    Функция $f$ называется \emph{непрерывной в точке}$x_0$, если 
+    \begin{multline}
+        \forall O(f(x_{0}))\exists O(x_{0})\forall x\in X\cap O(x_{0})\Rightarrow f(x)\in O(f(x_{0})),
+    \end{multline}
+    или 
+    \begin{multline}
+        \forall \varepsilon>0\exists\delta=\delta(\varepsilon)>0\forall x\in X \\
+        (\rho(x,x_{0})<\delta\Rightarrow|f(x)-f(x_{0})|<\varepsilon),
+    \end{multline}
+    или $\forall \varepsilon>0 \exists\delta=\delta(\varepsilon)>0 \forall x\in X$
+    \[\left( 
+        \begin{aligned}
+            |x_{1}-&x_{1}^{0}|<\delta & & \\
+            |x_{2}-&x_{2}^{0}|<\delta & & \\
+            &\vdots & \Rightarrow & |f(x)-f(x_{0})|<\varepsilon\\
+            x_{n}-&x_{n}^{0}|<\delta \\
+        \end{aligned} \right),
+    \]
+    где $x= (x_{1},x_{2}, \ldots ,x_{n})$, $x_{0}=(x_{1}^{0},x_{2}^{0},\ldots , x_{n}^{0})$.
+\end{definition}
+Если $x_0 \in X'$, то функция $f(x)$ непрерывна в точке $x_0$ тогда и только тогда,
+когда $\displaystyle \lim_{x \rightarrow x_0}f(x) = f(x_0)$.
+\begin{definition}
+    Пусть $y=f(x),x\in X, x_{0}\in X.$
+    Функция $f(x)$ называется непрерывной в точке $x_{0)}$ если
+    \[
+    \forall{x^{p}}\subset X \left(\lim_{p\rightarrow\infty}x^{p}=x_{0}\Rightarrow\lim_{p\rightarrow\infty}f(x^{p})=f(x_{0})\right) .
+    \]
+\end{definition}
+Приведенные определения равносильны, что следует из эквивалентности определений предела по Коши и по Гейне.
+\begin{theorem}
+    Если функция $f$ непрерывна в точке
+    $x_{0}$ и $f(x_{0})>0(f(x_{0})<0)$ , то найдутся такие $O(x_{0})$ и $r>0$, что
+    \[f(x)\geqslant r>0 (f(x)\leqslant-r<0)~\text{при}~x\in O(x_{0})\cap X.\]
+\end{theorem}
+\begin{proof}
+    Если $x_{0}\in X_{)}'$ то $\displaystyle \lim_{x\rightarrow x_{0}}f(x)=f(x_{0}))$, т.е.
+    \[\forall \varepsilon>0\exists\delta=\delta(\varepsilon)\forall x\in O_{\delta}(x_{0})\cap X\Rightarrow|f(x)-f(x_{0})|<\varepsilon.\]
+    Пусть $f(x_{0})>0$. Положим $\displaystyle \varepsilon=\frac{f(x_{0})}{2}>0$, по нему найдем $\delta(\varepsilon)$ и для любого $x\in O_{\delta}(x_{0})\cap X$ получим
+    \[|f(x)-f(x_{0})|<\frac{f(x_{0})}{2},\]
+    т.е.
+    \[f(x_{0})-\frac{f(x_{0})}{2}<f(x)<\frac{3}{2}f(x_{0}),\]
+    откуда
+    \[f(x)>r=\frac{f(x_{0})}{2}>0.\]
+\end{proof}
+
+Как и для функции одной переменной, имеют место теоремы о непрерывности суммы, произведения и частного двух непрерывных функций. Формулировки и доказательства этих теорем те же, что и для функции одной переменной.
+
+\begin{theorem}[Непрерывность сложной функции]
+    Пусть отображение $x = \varphi(t)$ определено в некоторой окрестности точки $t_0=(t_1^0, t_2^0,\ldots,t_m^0)\in \mathbb{R}^m $ 
+    и непрерывным образом отображает ее в точку $x_0=(x_1^0, x_2^0, \ldots, x_n^0)\in \mathbb{R}^n$. пусть функция $f(x)$ определена в некоторой окрестности точки 
+    $x_0$ и непрерывна в этой точке. Тогда сложная функция $F(t)=f(\varphi(t))$ непрерывна в точке $t_0$.
+\end{theorem}
+\begin{proof}
+    Заметим, что для отображения 
+    \[\varphi(t)=(\varphi_{1}(t),\varphi_{2}(t),\ldots,\varphi_{n}(t))\]
+    непрерывность в точке $t_0$ означает непрерывность каждой из функций $\varphi_i(t)$в точке $t_0$ как функции m переменных,т. е. если
+    $\left\{ t^p\right\}\subset \mathbb{R}^m$ и $t^p \xrightarrow[p\rightarrow\infty]{}t_0 $, то
+    \begin{multline}
+        \displaystyle
+        \varphi(t^{p})=(\varphi_{1}(t^{p}),\varphi_{2}(t^{p}),\ldots,\varphi_{n}(t^{p}))\xrightarrow[p\rightarrow\infty]{} \\
+        \xrightarrow[p\rightarrow\infty]{} (\varphi_{1}(t_{0}), \varphi_{2}(t_{0}),\ldots ,\varphi_{n}(t_{0}))=(x_{1}^{0},x_{2}^{0},\ldots , x_{n}^{0})=x_{0}.
+    \end{multline}
+    Положим $x^{p}=\varphi(t^{p})$, тогда $X^{p}\xrightarrow[p\rightarrow\infty]{}x_{0}$. В силу непрерывности функции $f, f(x^{p})\xrightarrow[p\rightarrow\infty]{}f(x_{0}),$ т.е.
+    \[F(t^{p})=f(\varphi(t^{p}))\xrightarrow[p\rightarrow\infty]{} f(x_{0})=f(\varphi(t_{0}))=F(t_{0})\]
+\end{proof}
+\subsection{Непрерывность на множестве. Свойства функций, непрерывных на множестве}
+\begin{definition}
+    Функция $f(x)$ называется \emph{непрерывной на множестве} $X\subseteq \mathbb{R}^n,$ если она непрерывна в каждой точке множества $X$.
+\end{definition}
+\begin{definition}
+    Множество $M$ из $\mathbb{R}^{n}$ называется \emph{связным}, если любые две точки множества можно соединить непрерываной кривой, лежайщей в этом множестве.
+\end{definition}
+
+Напомним, что \emph{непрерывной кривой} называется непрерывный образ отрезка
+\[ \left\{
+    \begin{aligned}
+        x_{1}=&x_{1}(t) & \\
+        &\vdots & \alpha\leqslant t\leqslant\beta,\\
+        x_{n}=&x_{n}(t) &
+    \end{aligned}\right.
+\]
+где $x_i(t)$ непрерывны на $[\alpha, \beta]$ при всех $i=1,2,\ldots, n$.
+
+\begin{theorem}
+    Пусть $G$ --- связное множество в $\mathbb{R}^n$.Пусть функция $f$ непрерывна на $G$ и существуют $a \in G$ и $b \in G$такие, что
+    $f(a)\neq f(b)$.Тогда для любого числа $C$, заключенного между $f(a)$ и $f(b)$, существует точка $c \in G$ такая, что $f(c)=C$.
+\end{theorem}
+\begin{proof}
+    Так как $G$ --- связное множество, существует непрерывная кривая
+    \[
+        L~:~\left\{
+            \begin{array}{c}
+            x_{1}=\phi_{1}(t),\\
+            x_{2}=\phi_{2}(t),\\
+            \vdots \\
+            x_{n}=\phi_{n}(t),
+            \end{array}\right. \alpha\leqslant t\leqslant\beta,
+    \]
+    соединяющая точки $a$ и $b$ и лежащая в $G$, т.е.
+    $a=(\phi_{1}(\alpha), \phi_{2}(\alpha), \ldots, \phi_{n}(\alpha)))b=(\phi_{1}(\beta), \phi_{2}(\beta), \ldots, \phi_{n}(\beta))$ и $x=(\phi 1(t), \phi 2(t), \ldots,\ \phi n(t))\in G$ при любом $t\in[\alpha, \beta].$
+    
+    Пусть $F(t)=f(\phi 1(t),\ \phi 2(t),\ \ldots,\ \phi n(t))$ . По теореме о непрерывности сложной функции функция $F(t)$ непрерывна на $[\alpha,\ \beta]$ и $F(\alpha)=f(a)_{)}F(\beta)=f(b),$ т.е. $F(\alpha)\neq F(\beta)$ и
+    \renewcommand{\qedsymbol}{}
+\end{proof}

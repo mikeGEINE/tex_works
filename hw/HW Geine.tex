@@ -1,0 +1,38 @@
+% !TEX program = xelatex
+
+\documentclass[a4paper, 14pt]{article}
+\usepackage{bmstu-lab}
+\hypersetup{
+    linkcolor=black
+}
+% \usepackage{showframe}
+\mathtoolsset{showonlyrefs=true} 
+\usepackage{titlesec}
+
+
+\begin{document}
+    \graphicspath{{images/}{images2/}} % папки с картинками
+    \renewcommand{\figurename}{Рисунок}
+
+    \worknumber{1}
+    \variant{4}
+    \workname{Закрепление знаний о \LaTeX}
+    \discipline{Автоматизация процессов разработки научно-технической документации}
+    \group{ИУ6-64Б}
+    \author{М.А.Гейне}
+    \tutor[Преподаватель]{Т.А.Ким}
+    \bmstutitlehome
+
+    \textbf{Цель работы:} закрепление на практике теоретических знаний о \LaTeX.
+    \section*{Задание}
+    Оформить документ в LATEX, все формулы, которые встречаются, должны быть оформлены в математическом режиме (через equation).
+    Если формула имеет номер и на неё есть ссылка, то необходимо также
+    проставить метку для формулы и ссылаться по этой метке. Все сноски
+    должны быть оформлены в виде сносок. Рисунки повторены при помощи
+    пакета TikZ.
+    
+    \section*{Выполнение задания}
+    \include{content}
+    \section*{Исходный код}
+    \codeinsert{'content.tex'}
+\end{document}

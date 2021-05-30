@@ -1,5 +1,6 @@
 tmp/
 *lab*/**
+*hw*/**
 !*lab*/images*
 !*lab*/images*/*
 !*lab*/*.sty
@@ -8,3 +9,11 @@ tmp/
 !*lab*/*.bib
 !*lab*/codes
 !*lab*/codes/*
+!*hw*/images*
+!*hw*/images*/*
+!*hw*/*.sty
+!*hw*/*.tex
+!*hw*/*.pdf
+!*hw*/*.bib
+!*hw*/codes
+!*hw*/codes/*
