@@ -17,3 +17,13 @@ tmp/
 !*hw*/*.bib
 !*hw*/codes
 !*hw*/codes/*
+
+*/**
+!*/images*
+!*/images*/*
+!*/*.sty
+!*/*.tex
+!*/*.pdf
+!*/*.bib
+!*/codes
+!*/codes/**

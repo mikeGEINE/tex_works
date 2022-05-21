@@ -1,0 +1,16 @@
+\subsection{Модуль \ocamlinlinecode{Make\_\allowbreak{}Auth.\allowbreak{}Authenticator}}\label{page-FPauth-core-module-FPauth+u+core-module-Make+u+Auth-module-Authenticator}%
+\ocamlinlinecode{Authenticator} содержит функции для исполнения списка \hyperref[page-FPauth-core-module-FPauth+u+core-module-Auth+u+sign-module-type-STRATEGY]{\ocamlinlinecode{\ocamlinlinecode{Auth\_\allowbreak{}sign.\allowbreak{}STRATEGY}}} и сброса аутентификации.
+
+\label{page-FPauth-core-module-FPauth+u+core-module-Make+u+Auth-module-Authenticator-type-entity}\ocamlcodefragment{\ocamltag{keyword}{type} entity = \hyperref[page-FPauth-core-module-FPauth+u+core-module-Make+u+Auth-argument-1-M-type-t]{\ocamlinlinecode{M.\allowbreak{}t}}}\begin{ocamlindent}тип \ocamlinlinecode{entity} - тип аутентифицируемой сущности, совпадающий с \ocamlinlinecode{MODEL}.t.\end{ocamlindent}%
+\medbreak
+\label{page-FPauth-core-module-FPauth+u+core-module-Make+u+Auth-module-Authenticator-type-strategy}\ocamlcodefragment{\ocamltag{keyword}{type} strategy = (\ocamltag{keyword}{module} \hyperref[page-FPauth-core-module-FPauth+u+core-module-Auth+u+sign-module-type-STRATEGY]{\ocamlinlinecode{Auth\_\allowbreak{}sign.\allowbreak{}STRATEGY}} \ocamltag{keyword}{with} \ocamltag{keyword}{type} \hyperref[page-FPauth-core-module-FPauth+u+core-module-Auth+u+sign-module-type-STRATEGY-type-entity]{\ocamlinlinecode{entity}} = \hyperref[page-FPauth-core-module-FPauth+u+core-module-Make+u+Auth-module-Authenticator-type-entity]{\ocamlinlinecode{entity}})}\begin{ocamlindent}\ocamlinlinecode{strategy} - модуль первого класса стратегии для \hyperref[page-FPauth-core-module-FPauth+u+core-module-Make+u+Auth-module-Authenticator-type-entity]{\ocamlinlinecode{\ocamlinlinecode{entity}}}.\end{ocamlindent}%
+\medbreak
+\label{page-FPauth-core-module-FPauth+u+core-module-Make+u+Auth-module-Authenticator-val-authenticate}\ocamlcodefragment{\ocamltag{keyword}{val} authenticate : 
+  \hyperref[page-FPauth-core-module-FPauth+u+core-module-Make+u+Auth-module-Authenticator-type-strategy]{\ocamlinlinecode{strategy}} \hyperref[xref-unresolved]{\ocamlinlinecode{Base}}.\allowbreak{}list \ocamltag{arrow}{$\rightarrow$}
+  \hyperref[xref-unresolved]{\ocamlinlinecode{Dream}}.\allowbreak{}request \ocamltag{arrow}{$\rightarrow$}
+  \hyperref[page-FPauth-core-module-FPauth+u+core-module-Static-module-AuthResult-type-t]{\ocamlinlinecode{Static.\allowbreak{}AuthResult.\allowbreak{}t}} \hyperref[xref-unresolved]{\ocamlinlinecode{Dream}}.\allowbreak{}promise}\begin{ocamlindent}\ocamlinlinecode{authenticate} запускается множество стратегий для запроса и определяет, была ли аутентификация в целом успешной или нет.\end{ocamlindent}%
+\medbreak
+\label{page-FPauth-core-module-FPauth+u+core-module-Make+u+Auth-module-Authenticator-val-logout}\ocamlcodefragment{\ocamltag{keyword}{val} logout : \hyperref[xref-unresolved]{\ocamlinlinecode{Dream}}.\allowbreak{}request \ocamltag{arrow}{$\rightarrow$} \hyperref[xref-unresolved]{\ocamlinlinecode{Base}}.\allowbreak{}unit \hyperref[xref-unresolved]{\ocamlinlinecode{Lwt}}.\allowbreak{}t}\begin{ocamlindent}\ocamlinlinecode{logout} сбрасывает сессию, что приводит к сбросу статуса аутентификации. В связи с особенностями работы \ocamlinlinecode{field} текущий пользователь будет сброшен только в следующем запросе.\end{ocamlindent}%
+\medbreak
+
+

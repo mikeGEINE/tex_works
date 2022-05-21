@@ -1,3 +1,3 @@
 # tex_works
 
-This is a repo for backing up laboratory works on LaTeX.
+This is a repo for backing up works on LaTeX.

@@ -1,0 +1,23 @@
+\subsection{Модуль \ocamlinlinecode{FPauth\_\allowbreak{}core}}\label{page-FPauth-core-module-FPauth+u+core}%
+\label{page-FPauth-core-module-FPauth+u+core-module-Static}\ocamlcodefragment{\ocamltag{keyword}{module} \hyperref[page-FPauth-core-module-FPauth+u+core-module-Static]{\ocamlinlinecode{Static}}}\ocamlcodefragment{ : \ocamltag{keyword}{sig} .\allowbreak{}.\allowbreak{}.\allowbreak{} \ocamltag{keyword}{end}}\begin{ocamlindent}\ocamlinlinecode{Static} - модуль, содержащий в себе определения статичных типов, которые не зависят от \hyperref[page-FPauth-core-module-FPauth+u+core-module-Auth+u+sign-module-type-MODEL]{\ocamlinlinecode{\ocamlinlinecode{Auth\_\allowbreak{}sign.\allowbreak{}MODEL}}}.\end{ocamlindent}%
+\medbreak
+\label{page-FPauth-core-module-FPauth+u+core-module-Variables}\ocamlcodefragment{\ocamltag{keyword}{module} \hyperref[page-FPauth-core-module-FPauth+u+core-module-Variables]{\ocamlinlinecode{Variables}}}\ocamlcodefragment{ : \ocamltag{keyword}{sig} .\allowbreak{}.\allowbreak{}.\allowbreak{} \ocamltag{keyword}{end}}\begin{ocamlindent}\ocamlinlinecode{VARIABLES} - модуль, инициализирующий и содержащий field-переменные для аутентификации.\end{ocamlindent}%
+\medbreak
+\label{page-FPauth-core-module-FPauth+u+core-module-Session+u+manager}\ocamlcodefragment{\ocamltag{keyword}{module} \hyperref[page-FPauth-core-module-FPauth+u+core-module-Session+u+manager]{\ocamlinlinecode{Session\_\allowbreak{}manager}}}\ocamlcodefragment{ : \ocamltag{keyword}{sig} .\allowbreak{}.\allowbreak{}.\allowbreak{} \ocamltag{keyword}{end}}\begin{ocamlindent}\ocamlinlinecode{Session\_\allowbreak{}manager} содержит middleware для контроля сессии веб-приложения.\end{ocamlindent}%
+\medbreak
+\label{page-FPauth-core-module-FPauth+u+core-module-Authenticator}\ocamlcodefragment{\ocamltag{keyword}{module} \hyperref[page-FPauth-core-module-FPauth+u+core-module-Authenticator]{\ocamlinlinecode{Authenticator}}}\ocamlcodefragment{ : \ocamltag{keyword}{sig} .\allowbreak{}.\allowbreak{}.\allowbreak{} \ocamltag{keyword}{end}}\begin{ocamlindent}\ocamlinlinecode{Authenticator} - модуль, предоставляющий функции для аутентификации и её сброса.\end{ocamlindent}%
+\medbreak
+\label{page-FPauth-core-module-FPauth+u+core-module-Router}\ocamlcodefragment{\ocamltag{keyword}{module} \hyperref[page-FPauth-core-module-FPauth+u+core-module-Router]{\ocamlinlinecode{Router}}}\ocamlcodefragment{ : \ocamltag{keyword}{sig} .\allowbreak{}.\allowbreak{}.\allowbreak{} \ocamltag{keyword}{end}}\begin{ocamlindent}\ocamlinlinecode{Router} - модуль, который содержит handlers для аутентификации и создаёт маршруты к ним.\end{ocamlindent}%
+\medbreak
+\label{page-FPauth-core-module-FPauth+u+core-module-Make+u+Auth}\ocamlcodefragment{\ocamltag{keyword}{module} \hyperref[page-FPauth-core-module-FPauth+u+core-module-Make+u+Auth]{\ocamlinlinecode{Make\_\allowbreak{}Auth}}}\ocamlcodefragment{ (\hyperref[page-FPauth-core-module-FPauth+u+core-module-Make+u+Auth-argument-1-M]{\ocamlinlinecode{M}} : \hyperref[page-FPauth-core-module-FPauth+u+core-module-Auth+u+sign-module-type-MODEL]{\ocamlinlinecode{Auth\_\allowbreak{}sign.\allowbreak{}MODEL}}) : \ocamltag{keyword}{sig} .\allowbreak{}.\allowbreak{}.\allowbreak{} \ocamltag{keyword}{end}}\begin{ocamlindent}\ocamlinlinecode{Make\_\allowbreak{}Auth} создаёт модуль аутентификации на основе \hyperref[page-FPauth-core-module-FPauth+u+core-module-Auth+u+sign-module-type-MODEL]{\ocamlinlinecode{\ocamlinlinecode{Auth\_\allowbreak{}sign.\allowbreak{}MODEL}}}. Предоставляет локальные переменные (\ocamlinlinecode{field}), \ocamlinlinecode{middleware}, аутентификатор, запускающий стратегии аутентификации, а также маршрутизатор, добавляющий в приложение маршруты аутентификации.\end{ocamlindent}%
+\medbreak
+\label{page-FPauth-core-module-FPauth+u+core-module-Auth+u+sign}\ocamlcodefragment{\ocamltag{keyword}{module} \hyperref[page-FPauth-core-module-FPauth+u+core-module-Auth+u+sign]{\ocamlinlinecode{Auth\_\allowbreak{}sign}}}\ocamlcodefragment{ : \ocamltag{keyword}{sig} .\allowbreak{}.\allowbreak{}.\allowbreak{} \ocamltag{keyword}{end}}\begin{ocamlindent}\ocamlinlinecode{Auth\_\allowbreak{}sign} - модуль, содержащий сигнатуры других модулей, которые могут быть реализованы и интегрированы извне библиотеки, а также сигнатуры некоторых внутренних модулей.\end{ocamlindent}%
+\medbreak
+
+\input{FPauth-core/FPauth_core.Static.tex}
+\input{FPauth-core/FPauth_core.Variables.tex}
+\input{FPauth-core/FPauth_core.Session_manager.tex}
+\input{FPauth-core/FPauth_core.Authenticator.tex}
+\input{FPauth-core/FPauth_core.Router.tex}
+\input{FPauth-core/FPauth_core.Make_Auth.tex}
+\input{FPauth-core/FPauth_core.Auth_sign.tex}

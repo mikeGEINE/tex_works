@@ -1,0 +1,19 @@
+\subsection{Модуль \ocamlinlinecode{FPauth\_\allowbreak{}responses.\allowbreak{}HTML}}\label{page-FPauth-responses-module-FPauth+u+responses-module-HTML}%
+Этот модуль содержит ответы на базовые события FPauth в формате HTML.
+
+\label{page-FPauth-responses-module-FPauth+u+responses-module-HTML-module-type-HTML+u+settings}\ocamlcodefragment{\ocamltag{keyword}{module} \ocamltag{keyword}{type} \hyperref[page-FPauth-responses-module-FPauth+u+responses-module-HTML-module-type-HTML+u+settings]{\ocamlinlinecode{HTML\_\allowbreak{}settings}}}\ocamlcodefragment{ = \ocamltag{keyword}{sig}}\begin{ocamlindent}\label{page-FPauth-responses-module-FPauth+u+responses-module-HTML-module-type-HTML+u+settings-val-app+u+name}\ocamlcodefragment{\ocamltag{keyword}{val} app\_\allowbreak{}name : \hyperref[xref-unresolved]{\ocamlinlinecode{Base}}.\allowbreak{}string}\\
+\end{ocamlindent}%
+\ocamlcodefragment{\ocamltag{keyword}{end}}\begin{ocamlindent}Этот модуль содержит такие настройки, как название приложения для заголовков страниц.\end{ocamlindent}%
+\medbreak
+\label{page-FPauth-responses-module-FPauth+u+responses-module-HTML-module-Make}\ocamlcodefragment{\ocamltag{keyword}{module} \hyperref[page-FPauth-responses-module-FPauth+u+responses-module-HTML-module-Make]{\ocamlinlinecode{Make}}}\ocamlcodefragment{
+  (\hyperref[page-FPauth-responses-module-FPauth+u+responses-module-HTML-module-Make-argument-1-V]{\ocamlinlinecode{V}} : \hyperref[page-FPauth-core-module-FPauth+u+core-module-Auth+u+sign-module-type-VARIABLES]{\ocamlinlinecode{FPauth\_\allowbreak{}core.\allowbreak{}Auth\_\allowbreak{}sign.\allowbreak{}VARIABLES}})
+  (\hyperref[page-FPauth-responses-module-FPauth+u+responses-module-HTML-module-Make-argument-2-S]{\ocamlinlinecode{S}} : \hyperref[page-FPauth-responses-module-FPauth+u+responses-module-HTML-module-type-HTML+u+settings]{\ocamlinlinecode{HTML\_\allowbreak{}settings}}) : 
+  \hyperref[page-FPauth-core-module-FPauth+u+core-module-Auth+u+sign-module-type-RESPONSES]{\ocamlinlinecode{FPauth\_\allowbreak{}core.\allowbreak{}Auth\_\allowbreak{}sign.\allowbreak{}RESPONSES}}}\begin{ocamlindent}\ocamlinlinecode{Make} создаёт HTML ответы со всеми зависимостями.\end{ocamlindent}%
+\medbreak
+\label{page-FPauth-responses-module-FPauth+u+responses-module-HTML-val-make+u+responses}\ocamlcodefragment{\ocamltag{keyword}{val} make\_\allowbreak{}responses : 
+  ?app\_\allowbreak{}name:string \ocamltag{arrow}{$\rightarrow$}
+  (\ocamltag{keyword}{module} \hyperref[page-FPauth-core-module-FPauth+u+core-module-Auth+u+sign-module-type-VARIABLES]{\ocamlinlinecode{FPauth\_\allowbreak{}core.\allowbreak{}Auth\_\allowbreak{}sign.\allowbreak{}VARIABLES}}) \ocamltag{arrow}{$\rightarrow$}
+  (\ocamltag{keyword}{module} \hyperref[page-FPauth-core-module-FPauth+u+core-module-Auth+u+sign-module-type-RESPONSES]{\ocamlinlinecode{FPauth\_\allowbreak{}core.\allowbreak{}Auth\_\allowbreak{}sign.\allowbreak{}RESPONSES}})}\begin{ocamlindent}\ocamlinlinecode{make\_\allowbreak{}responses ?app\_\allowbreak{}name (Variables)} - функция для удобного создания модуля HTML ответов без \hyperref[page-FPauth-responses-module-FPauth+u+responses-module-HTML-module-type-HTML+u+settings]{\ocamlinlinecode{\ocamlinlinecode{HTML\_\allowbreak{}settings}}}. Возвращает модуль первого класса.\end{ocamlindent}%
+\medbreak
+
+\input{FPauth-responses/FPauth_responses.HTML.Make.tex}

@@ -1,0 +1,63 @@
+\section{\ocamlinlinecode{FPauth} - библиотека для лёгкой, но настраиваемой аутентификации в веб-приложениях Dream.\label{fpauth---библиотека-для-лёгкой,-но-в-то-же-время-настраиваемой-аутентификации-в-веб-приложениях-dream.}}\label{page-FPauth-leaf-page-index}%
+FPauth - лёгкая система аутентификации для \href{https://github.com/aantron/dream}{OCaml Dream}\footnote{\url{https://github.com/aantron/dream}} веб-фреймворка.
+
+Главная идея системы заключается в том, что аутентификация проводится посредством запуска наборов Стратегий, и, когда одна из них завершается успешно, пользователь считается аутентифицированным. Статус аутентификации контролируется middleware, вызываемым после middleware сессии.
+
+Система позволяет:
+
+\begin{itemize}\item{Контролировать аутентификацию в веб-сессии;}%
+\item{Получать статус аутентификации для каждого запроса через \ocamlinlinecode{Dream.\allowbreak{}field};}%
+\item{Проверять личность пользователя стратегиями;}%
+\item{Использовать стратегии в составе библиотеки или сторонние;}%
+\item{Добавлять все маршруты для аутентификации и стратегий единовременно;}%
+\item{Добавлять собственные представления событий аутентификации или использовать встроенные в библиотеку;}%
+\item{Использовать встроенные в библиотеку обработчики запросов или собственные;}%
+\item{Извлекать параметры для аутентификации из запросов.}\end{itemize}%
+\subsection{Начало работы\label{Начало-работы}}%
+Чтобы начать использовать библиотеку FPauth в своём проекте, необходимо:
+
+\begin{itemize}\item{Установить её. К примеру, воспользоваться командой \ocamlinlinecode{opam install FPauth}.}%
+\item{Подключить библиотеку к системе сборки. Например, при использовании \ocamlinlinecode{dune}, необходимо в dune-файле указать:
+
+\begin{verbatim}(libraries FPauth)\end{verbatim}%
+}\end{itemize}%
+\begin{itemize}\item{Инициализировать систему с моделью пользователя, которая удовлетворяет сигнатуре \hyperref[page-FPauth-core-module-FPauth+u+core-module-Auth+u+sign-module-type-MODEL]{\ocamlinlinecode{\ocamlinlinecode{FPauth.\allowbreak{}Auth\_\allowbreak{}sign.\allowbreak{}MODEL}}}. Эта сигнатура требует функций, которые определят, как сохранять пользователей в сессии и восстанавливать их из неё (\ocamlinlinecode{serialize} и \ocamlinlinecode{deserialize}), как находить пользователей по параметрам запросов (\ocamlinlinecode{identificate}) и какие стратегии могут быть применены к пользователю (\ocamlinlinecode{applicable\_\allowbreak{}strats});\medbreak
+\begin{ocamlcodeblock}
+module Auth = FPauth.Make_Auth (User)
+\end{ocamlcodeblock}\medbreak
+}\end{itemize}%
+\begin{itemize}\item{Инициализировать стратегии, которые будут использоваться для верификации личностей пользователей. В \hyperref[page-FPauth-strategies-module-FPauth+u+strategies]{\ocamlinlinecode{\ocamlinlinecode{FPauth.\allowbreak{}Strategies}}} имеется несколько стратегий. \ocamlinlinecode{Password} используется для парольной аутентификации, пароли должны быть предварительно захэшированы с поощью Argon2. `TOTP` является стратегияе проверки по одноразовым паролям на основе времени.Содержит маршруты для насипойки стратегии для заранее аутентифицированного пользователя. Стратегии могут иметь дополнительные требования к моделям пользователей, а также зависеть от других модулей.\medbreak
+\begin{ocamlcodeblock}
+module Password = FPauth_strategies.Password.Make (User)
+\end{ocamlcodeblock}\medbreak
+}\end{itemize}%
+\begin{itemize}\item{Добавить `Session\_manager` middleware после middleware сессии;\medbreak
+\begin{ocamlcodeblock}
+let () = run
+  @@ memory_sessions
+  @@ Auth.Session_manager.auth_setup
+\end{ocamlcodeblock}\medbreak
+}\end{itemize}%
+\begin{itemize}\item{вставить маршруты FPauth в \ocamlinlinecode{Dream.\allowbreak{}router} middleware. Здесь задаются стратегии, которые будут использоваться для аутентификации; способ извлечения параметров из запросов; ответы на основные события аутентификации. Также можно определить область видимости маршрутов аутентификации.\medbreak
+\begin{ocamlcodeblock}
+@@ router [
+    Auth.Router.call [(module Password)] ~responses:(module Responses) ~extractor:extractor ~scope:"/authentication"
+]
+\end{ocamlcodeblock}\medbreak
+Стратегии и Ответы подаются в виде модулей первого класса, которые должны удовлетворять требования сигнатур \hyperref[page-FPauth-core-module-FPauth+u+core-module-Auth+u+sign-module-type-STRATEGY]{\ocamlinlinecode{\ocamlinlinecode{FPauth.\allowbreak{}Auth\_\allowbreak{}sign.\allowbreak{}STRATEGY}}}. * In `FPauth\_responses` you can find some default responses in JSON and HTML format; * In `FPauth.Static.Params` you can find some default extractors from JSON-requests' bodies, forms or from query;
+
+}\end{itemize}%
+\begin{itemize}\item{Готово! Теперь веб-приложение может аутентифицировать пользователей.}\end{itemize}%
+\subsection{Продвинутое использование\label{Продвинутое-использование}}%
+Можно настроить многие аспекты работы системы аутентификации. К примеру:
+
+\begin{itemize}\item{Можно установаить только необходимые пакеты:
+
+\begin{itemize}\item{\ocamlinlinecode{FPauth-core} содержит Session\_manager, Authenticator, Router, Variables, а также статичный модуль Static и сигнатуры. Это всё позволяет выстраить собственную систему аутентификацию почти с нуля;}%
+\item{\ocamlinlinecode{FPauth-strategies} содержит \ocamlinlinecode{Password} and \ocamlinlinecode{OTP} стратегии. Если они не нужны - их можно не устанавливать;}%
+\item{\ocamlinlinecode{FPauth-responses} содержит некоторые простые ответы на основные события аутентификации;}\end{itemize}%
+}%
+\item{Можно написать собственные стратегии, ответы и экстракторы параметров.}\end{itemize}%
+Подробная документация в разделе \hyperref[page-FPauth-module-FPauth]{\ocamlinlinecode{\ocamlinlinecode{FPauth}}}{}.%
+
+
