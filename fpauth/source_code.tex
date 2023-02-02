@@ -1,0 +1,122 @@
+% !TEX program = xelatex
+
+\documentclass[a4paper, 12pt]{article}
+\usepackage{bmstu-lab}
+\hypersetup{
+    linkcolor=black,
+    urlcolor=black
+}
+\usepackage[english,russian]{babel}
+% \usepackage{showframe}
+
+\usepackage{changepage}
+\usepackage{longtable}
+\usepackage{listings}
+\usepackage[strings]{underscore}
+
+\usepackage{color}
+\usepackage[T1]{fontenc}
+\usepackage{import}
+\usepackage{url}
+
+\newfontfamily\monofamily{Courier New}
+
+\newcommand{\ocamlcodefragment}[1]{{\monofamily\setlength{\parindent}{0cm}\raggedright#1}}
+\newcommand{\ocamlinlinecode}[1]{{\monofamily#1}}
+\newcommand{\bold}[1]{{\bfseries#1}}
+\newenvironment{ocamlexception}{\bfseries}{}
+\newenvironment{ocamlextension}{\bfseries}{}
+
+\newenvironment{ocamlkeyword}{\bfseries}{}
+
+\newenvironment{ocamlconstructor}{\bfseries}{}
+\newenvironment{ocamltype-var}{\itshape\monofamily}{}
+
+\newcommand{\ocamlhighlight}{\bfseries\uline}
+\newcommand{\ocamlerror}{\bfseries}
+\newcommand{\ocamlwarning}{\bfseries}
+
+\newcommand{\ocamltag}[2]{\begin{ocaml#1}#2\end{ocaml#1}}
+
+\definecolor{lightgray}{gray}{0.97}
+\definecolor{gray}{gray}{0.5}
+\newcommand{\ocamlcomment}{\color{gray}\normalfont\small}
+\newcommand{\ocamlstring}{\color{gray}\bfseries}
+\newenvironment{ocamlindent}{\begin{adjustwidth}{2em}{0pt}}{\end{adjustwidth}}
+\newenvironment{ocamltabular}[1]{\begin{tabular}{#1}}
+{\end{tabular}}
+
+\lstnewenvironment{ocamlcodeblock}{
+  \lstset{
+    backgroundcolor = \color{lightgray}, 
+    basicstyle=\monofamily,
+    showstringspaces=false,
+    language=caml,
+    escapeinside={$}{$},
+    columns=fullflexible,
+    stringstyle=\ocamlstring,
+    commentstyle=\ocamlcomment,
+    keepspaces=true,
+    keywordstyle=\ocamlkeyword,
+    moredelim=[is][\ocamlhighlight]{<<}{>>},
+    moredelim=[s][\ocamlstring]{\{|}{|\}},
+    moredelim=[s][\ocamlstring]{\{delimiter|}{|delimiter\}},
+    keywords={[2]{val,initializer,nonrec}}, keywordstyle={[2]\ocamlkeyword},
+    belowskip=0\baselineskip,
+    upquote=true,
+    breaklines=true,
+    literate={'"'}{\textquotesingle "\textquotesingle}3
+    {'\\"'}{\textquotesingle \textbackslash"\textquotesingle}4,
+  }
+  }{}
+\newcommand{\inputchapter}[1]{\chapter{#1}
+\input{#1}}
+
+\newenvironment{ocamlarrow}{\bfseries}{}
+
+\lstdefinestyle{OCaml}{    
+    basicstyle=\monofamily,
+    showstringspaces=false,
+    language=caml,
+    escapeinside={$}{$},
+    columns=fullflexible,
+    stringstyle=\ocamlstring,
+    commentstyle=\ocamlcomment,
+    keepspaces=true,
+    keywordstyle=\ocamlkeyword,
+    moredelim=[is][\ocamlhighlight]{<<}{>>},
+    moredelim=[s][\ocamlstring]{\{|}{|\}},
+    moredelim=[s][\ocamlstring]{\{delimiter|}{|delimiter\}},
+    keywords={[2]{val,initializer,nonrec}}, keywordstyle={[2]\ocamlkeyword},
+    belowskip=0\baselineskip,
+    upquote=true,
+    breaklines=true,
+    literate={'"'}{\textquotesingle "\textquotesingle}3
+    {'\\"'}{\textquotesingle \textbackslash"\textquotesingle}4,
+}
+
+\begin{document}
+  \addition{ПРИЛОЖЕНИЕ В}
+  \workname{ПРОГРАММНАЯ БИБЛИОТЕКА ПОДПРОГРАММ ИДЕНТИФИКАЦИИ ПОЛЬЗОВАТЕЛЕЙ}
+  \worktype{Фрагмент исходного текста}
+  \group{ИУ6-84Б}
+  \author{М.А. Гейне}
+  \tutor[Руководитель]{П. В. Аргентов}
+  \bmstutitle
+
+  \tolerance=1000
+  \large Исходный текст модуля Authenticator (\path{src/core/authenticator.ml}):
+
+  \normalsize\lstinputlisting[style=OCaml]{codes/authenticator.ml}
+
+  \large Исходный текст модуля Password (\path{src/strategies/password.ml}):
+
+  \normalsize\lstinputlisting[style=OCaml]{codes/password.ml}
+
+  % \large Исходный текст модуля TOTP (\path{src/strategies/TOTP.ml}):
+
+  % \normalsize\lstinputlisting[style=OCaml]{codes/TOTP.ml}
+
+  \large Исходный код всего проекта доступен в открытом репозитории кода на GitHub: \url{https://github.com/mikeGEINE/FPauth}.
+
+\end{document}
